@@ -2,8 +2,6 @@ import time
 import subprocess
 from mcstatus import MinecraftServer
 import re
-from colorama import Fore, init
-init()
 import os
 # funciones
 
@@ -11,7 +9,7 @@ def start_server():
 	try:
 		for i in range(1,11):
 			subprocess.call("clear",shell=True)
-			print("Iniciando servidor\n[",f"{Fore.GREEN}█"*i,f"{Fore.WHITE}","]","{}% / 100%\nCTRL + C Para cancelar".format(i*10))
+			print("Iniciando servidor\n[","█"*i,"]","{}% / 100%\nCTRL + C Para cancelar".format(i*10))
 			time.sleep(0.2)
 			subprocess.call("clear", shell=True)
 		
@@ -161,7 +159,7 @@ def plugins():
 		1.24:["WorldEdit 7.2.8", "https://dev.bukkit.org/projects/worldedit/files/3559523/download"],
 		1.25:["Fast Async WorldEdit #426 25/12/21 (1.17)", "https://ci.athion.net/job/FastAsyncWorldEdit-1.17/426/artifact/artifacts/FastAsyncWorldEdit-Bukkit-1.17-426.jar"],
 		1.26:["Fast Async WorldEdit #64 12/1/22 (1.18)", "https://ci.athion.net/view/%20%20FastAsyncWorldEdit/job/FastAsyncWorldEdit/64/artifact/artifacts/FastAsyncWorldEdit-Bukkit-2.0.0-SNAPSHOT-64.jar"],
-		1.17:["WorldGuard 7.0.6 (MC 1.17.1-1.18)", "https://dev.bukkit.org/projects/worldguard/files/3461546/download"],
+		1.27:["WorldGuard 7.0.6 (MC 1.17.1-1.18)", "https://dev.bukkit.org/projects/worldguard/files/3461546/download"],
 		0:["EXIT",""]
 		}
 		for x, y in dic.items():
@@ -172,7 +170,10 @@ def plugins():
 			break
 
 		else:
-			subprocess.call("wget -t 100 {}".fortmat(dic[link][1]))
+			subprocess.call(f"cd plugins/ && wget -t 100 {dic[link][1]}",shell=True)
+			print(f"Descarga de {dic[link][0]} completa!")
+			time.sleep(5)
+			subprocess.call("clear",shell=True)
 			
 
 
@@ -188,47 +189,88 @@ def download_server_apache_nodefault():
     subprocess.call("rm -r /var/www/html", shell=True)
     subprocess.call("cd && mkdir /var/www/html && cd /var/www/html/ && wget -t 100 https://cdn.discordapp.com/attachments/886730959058243626/887403234258477076/html.zip && unzip html.zip", shell=True)
     
+def deleted_server():
+	subprocess.call("clear",shell=True)
+	options = input("Estas por borrar el servidor esto incluye todos los archivos y datos del mismo [SI/NO]\n...").upper()
+	if options == "SI":
+		name = input("Nombre de la carpeta servidor\n...")
+		subprocess.call('cd .. && rm -v !("lxa") {} '.format(name),shell=True)
+		print("Servidor cancelado correctamente")
+	else:
+		print("Borrado de servidor cancelado")
 
 
 # MAIN 
 while True:
 
-	option = int(input("[1]Configuracion De Servidor\n[2]Otros\n..."))
-	
+	option = int(input("[1]Configuracion De Servidor\n[2]Otros\n[00]Salir\n..."))
+	subprocess.call("clear",shell=True)
 
 
 	if option == 1:
-		select = int(input("[1]Descar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins\n[00]Salir\n..."))
+		select = int(input("[1]Descar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins\n[8]Borrar servidor\n[00]Salir\n..."))
 
 		if select == 1:
+			subprocess.call("clear",shell=True)
 			download_server()
+			
+
 
 		elif select == 2:
+			subprocess.call("clear",shell=True)
 			start_server()
+			
+
 
 		elif select == 3:
+			subprocess.call("clear",shell=True)
 			change_ram()
+			
+
 
 		elif select == 4:
+			subprocess.call("clear",shell=True)
 			entry_server()
+			
+
 
 		elif select == 5:
+			subprocess.call("clear",shell=True)
 			close_server()
 
+
 		elif select == 6:
+			subprocess.call("clear",shell=True)
 			pingServerName()
+
+
 	
 		elif select == 7:
+			subprocess.call("clear",shell=True)
 			plugins()	
 
+
+		elif select == 8:
+			deleted_server()
+
 		elif select == 0:
+			subprocess.call("clear",shell=True)
 			break	
 
 	elif option == 2:
-		select = int(input("[1]Apache pagina predeterminada\n[2]Apache pagina con guia de instalación\n..."))
+		subprocess.call("clear",shell=True)
+		select = int(input("[1]Apache pagina predeterminada\n[2]Apache pagina con guia de instalación(En proceso de creación)\n..."))
 
 		if select == 1:
+			subprocess.call("clear",shell=True)
 			download_server_apache_default()
 
 		elif select == 2:
+			subprocess.call("clear",shell=True)
 			download_server_apache_nodefault()
+
+	elif option == 00:
+		break
+
+	else:
+		print("Valor fuera de rango")
