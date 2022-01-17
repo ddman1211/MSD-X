@@ -5,6 +5,11 @@ import re
 import os
 # funciones
 
+
+def upgrade():
+	subprocess.call("sudo apt-get install default-jre -y && sudo apt-get install default-jdk -y && sudo apt-get install openjdk-16-jre -y && sudo apt-get install zip gzip tar -y",shell=True)
+
+
 def start_server():
 	try:
 		for i in range(1,11):
@@ -50,6 +55,7 @@ def eula_sh(ram,jarFile):
 """
 
 def download_server():
+	upgrade()
 	options = int(input("[1]Spigot\n[2]Paper\n[3]Purpur\n..."))
 
 	# SPIGOT
@@ -57,7 +63,7 @@ def download_server():
 		
 		# Libreria
 		versionesSP = {1: "https://download.getbukkit.org/spigot/spigot-1.18.1.jar",2: "https://download.getbukkit.org/spigot/spigot-1.17.1.jar",3: "https://cdn.getbukkit.org/spigot/spigot-1.16.5.jar",4: "https://cdn.getbukkit.org/spigot/spigot-1.15.2.jar",5: "https://cdn.getbukkit.org/spigot/spigot-1.14.4.jar",6: "https://cdn.getbukkit.org/spigot/spigot-1.12.2.jar",7: "https://cdn.getbukkit.org/spigot/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar",}
-		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n[3]1.16.5\n[4]1.15.2\n[5]1.14.4\n[6]1.12.2\n[7]1.8.8"))
+		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n[3]1.16.5\n[4]1.15.2\n[5]1.14.4\n[6]1.12.2\n[7]1.8.8\n..."))
 		versiones_FN = versionesSP[versiones_PR]
 
 		# Descarga
@@ -87,7 +93,7 @@ def download_server():
 
 		# Libreria
 		versionesPU = {1:"https://api.purpurmc.org/v2/purpur/1.18.1/1497/download",2:"https://api.purpurmc.org/v2/purpur/1.17.1/1428/download",3:"https://api.purpurmc.org/v2/purpur/1.16.5/1171/download"}
-		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n[3]1.16.5\n\n..."))
+		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n[3]1.16.5\n..."))
 		versiones_FN = versionesPU[versiones_PR]
 
 		# Descarga
@@ -193,11 +199,11 @@ def deleted_server():
 	subprocess.call("clear",shell=True)
 	options = input("Estas por borrar el servidor esto incluye todos los archivos y datos del mismo [SI/NO]\n...").upper()
 	if options == "SI":
-		name = input("Nombre de la carpeta servidor\n...")
-		subprocess.call('cd .. && rm -v !("lxa") {} '.format(name),shell=True)
+		import os
+		os.system("ls | grep -v *.py | xargs rm -fr")
 		print("Servidor cancelado correctamente")
 	else:
-		print("Borrado de servidor cancelado")
+		print("Accion cancelada")
 
 
 # MAIN 
@@ -208,7 +214,7 @@ while True:
 
 
 	if option == 1:
-		select = int(input("[1]Descar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins\n[8]Borrar servidor\n[00]Salir\n..."))
+		select = int(input("[1]Descar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins (Mantenimiento)\n[8]Borrar servidor (mantenimiento)\n[00]Salir\n..."))
 
 		if select == 1:
 			subprocess.call("clear",shell=True)
