@@ -142,7 +142,7 @@ def plugins():
 	while True:
 		dic ={
 		1.1:["EssentialsX 2.19.2", "https://github.com/EssentialsX/Essentials/releases/download/2.19.2/EssentialsX-2.19.2.jar"],
-		1.2:["Multiverse-Core 4.3.1", "https://dev.bukkit.org/projects/multiverse-core/files/latest"],
+		1.2:["Multiverse-Core 4.3.1", "https://dev.bukkit.org/projects/multiverse-core/files/3462546/download"],
 		1.4:["ViaVersion 4.1.1", "https://www.spigotmc.org/resources/viaversion.19254/download?version=429596"],
 		1.5:["Protocolib 4.7.0", "https://www.spigotmc.org/resources/protocollib.1997/download?version=408253"],
 		1.6:["Skript 2.1.2", "https://dev.bukkit.org/projects/skript/files/latest"],
@@ -201,20 +201,45 @@ def deleted_server():
 	if options == "SI":
 		import os
 		os.system("ls | grep -v *.py | xargs rm -fr")
-		print("Servidor cancelado correctamente")
+		print("Servidor borrado correctamente")
 	else:
 		print("Accion cancelada")
 
+def start():
+    print(
+"""
+888b     d888  .d8888b.  8888888b.  888-888-888-888-888-888-888
+8888b   d8888 d88P  Y88b 888  "Y88b By: M20191
+88888b.d88888 Y88b.      888    888 Date: 3/2/2022 
+888Y88888P888  "Y888b.   888    888 Python: > 3.5
+888 Y888P 888     "Y88b. 888    888 OS: Ubuntu Server  
+888  Y8P  888       "888 888    888 OSversion: >19.04
+888   "   888 Y88b  d88P 888  .d88P Minecraft Server Downloader
+888       888  "Y8888P"  8888888P"  888-888-888-888-888-888-888 
+""")
+
+def starttwo():
+	lista = [
+	"    __  ________ ____  M",
+	"   /  |/  / ___// __ \ 2 " ,
+	"  / /|_/ /\__ \/ / / / 0",
+	" / /  / /___/ / /_/ /  1",
+	"/_/  /_//____/_____/   9",
+	""]  
+	for i in lista:
+		time.sleep(0.2)
+		print(i)
 
 # MAIN 
 while True:
-
+	start()
 	option = int(input("[1]Configuracion De Servidor\n[2]Otros\n[00]Salir\n..."))
 	subprocess.call("clear",shell=True)
 
 
 	if option == 1:
-		select = int(input("[1]Descar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins (Mantenimiento)\n[8]Borrar servidor (mantenimiento)\n[00]Salir\n..."))
+		starttwo()
+		select = int(input("[1]Descargar Servidor\n[2]Iniciar Servidor\n[3]Cambiar Ram\n[4]Entrar Servidor\n[5]Cerrar Servidor\n[6]Ping Server\n[7]Plugins (Mantenimiento)\n[8]Borrar servidor\n[00]Salir\n..."))
 
 		if select == 1:
 			subprocess.call("clear",shell=True)
