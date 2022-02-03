@@ -1,4 +1,11 @@
-![gitub](https://img.shields.io/badge/build-process-red?style=for-the-badge&logo=github)
+<p align="center">
+<a href="#"><img title="MSD" src="https://media.discordapp.net/attachments/901591362250637342/938845876380663838/msd.png"></a>
+</p>
+<p align=center>
+<a href="#"><img title="build" src="https://img.shields.io/badge/build-process-red?style=for-the-badge&logo=github"><a>
+</p>
+
+
 
 ![MSD-X](https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue?style=flat-square&logo=python)
 ![ubuntu](https://img.shields.io/badge/ubuntu-18.10%20%7C%2019.04%20%7C%2019.10%20%7C%20%7C%20%2020.04-blue?style=flat-square&logo=ubuntu)
