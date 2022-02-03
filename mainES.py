@@ -134,9 +134,10 @@ def pingServerName():
 	        print(f"Version (Puede ser la de bunge): {response.version.name[0:15]} {response.version.name[-6:]}")
 	        response.description = re.sub('§[\da-zA-Z]', '', response.description)
 	        print(f"Descripcion: {response.description}\nEstado: Activo")
-	        
+	        time.sleep(3)
     except:
     	print("Servidor cerrado o en mantenimiento")
+    	time.sleep(3)
 
 def plugins():
 	while True:
@@ -206,16 +207,22 @@ def deleted_server():
 		print("Accion cancelada")
 
 def start():
-    print(
-"""
-888b     d888  .d8888b.  8888888b.  888-888-888-888-888-888-888
+	import platform
+	import datetime
+	time = datetime.date.today()
+	
+	sistema = platform.system()
+	version = platform.version()
+	print(
+f"""
+888b     d888  .d8888b.  8888888b.  Y88-888-888-888-888-888-888-888-88Y
 8888b   d8888 d88P  Y88b 888  "Y88b By: M20191
-88888b.d88888 Y88b.      888    888 Date: 3/2/2022 
-888Y88888P888  "Y888b.   888    888 Python: > 3.5
-888 Y888P 888     "Y88b. 888    888 OS: Ubuntu Server  
-888  Y8P  888       "888 888    888 OSversion: >19.04
-888   "   888 Y88b  d88P 888  .d88P Minecraft Server Downloader
-888       888  "Y8888P"  8888888P"  888-888-888-888-888-888-888 
+88888b.d88888 Y88b.      888    888 Date: {time} 
+888Y88888P888  "Y888b.   888    888 OS: {sistema}
+888 Y888P 888     "Y88b. 888    888 OSversion: {version}  
+888  Y8P  888       "888 888    888 Python: > 3.5
+888   "   888 Y88b  d88P 888  .d88P Minecraft Server Downloader 2.2V
+888       888  "Y8888P"  8888888P"  Y88-888-888-888-888-888-888-888-88Y 
 """)
 
 def starttwo():
@@ -232,6 +239,7 @@ def starttwo():
 
 # MAIN 
 while True:
+	subprocess.call("clear",shell=True)
 	start()
 	option = int(input("[1]Configuracion De Servidor\n[2]Otros\n[00]Salir\n..."))
 	subprocess.call("clear",shell=True)
