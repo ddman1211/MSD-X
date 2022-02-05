@@ -139,6 +139,8 @@ def pingServerName():
     	print("Servidor cerrado o en mantenimiento")
     	time.sleep(3)
 
+
+#Mantenimiento
 def plugins():
 	while True:
 		dic ={
@@ -210,7 +212,6 @@ def start():
 	import platform
 	import datetime
 	time = datetime.date.today()
-	
 	sistema = platform.system()
 	version = platform.version()
 	print(
