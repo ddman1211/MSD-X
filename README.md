@@ -13,7 +13,7 @@
 
 
 <p align=center>
-<a href="#"><img title="build" src="https://img.shields.io/badge/build-process-red?style=for-the-badge&logo=github"><a>
+ <a href="#"><img title="build" src="https://img.shields.io/badge/status-optimizing-yellow?style=for-the-badge&logo=github"><a>
 </p>
 <p align="center">
   <a href="#"><img src="https://img.shields.io/badge/python-3.5%20%7C%203.6%20%7C%203.7%20%7C%203.8%20%7C%203.9%20%7C%203.10-blue?style=flat-square&logo=python"></a>
