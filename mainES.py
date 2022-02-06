@@ -77,12 +77,23 @@ def download_server():
 	elif options == 2:	
 		
 		# Libreria
-		versionesPA = {1: "https://papermc.io/api/v2/projects/paper/versions/1.18.1/builds/140/downloads/paper-1.18.1-140.jar",2: "https://papermc.io/api/v2/projects/paper/versions/1.17.1/builds/408/downloads/paper-1.17.1-408.jar"}
+		versionesPA = {1: "1.18.1",2: "1.17.1"}
 		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n..."))
 		versiones_FN = versionesPA[versiones_PR]
 
-		# Descarga
-		subprocess.call('wget -t 100 {} -O "paper.jar"'.format(versiones_FN), shell=True)
+		## Build
+		url = "https://papermc.io/api/v2/projects/paper/versions/{}/".format(versiones_FN)
+		resp = requests.get(url)
+		build = resp.json()["builds"][-1]
+	
+		# Version
+		url = "https://papermc.io/api/v2/projects/paper/versions/{}/builds/{}".format(versiones_FN,build)
+		resp = requests.get(url)
+		version = resp.json()["downloads"]["application"]["name"]
+
+		# Download
+		url = "https://papermc.io/api/v2/projects/paper/versions/{}/builds/{}/downloads/{}".format(versiones_FN,build,version)
+		subporcess.call('wget -t 100 -O "paper.jar" {}'.format(url),shell=True)
 
 		# Inicio	
 		eula_sh(ram = int(input("Ingrese valor de ram en GB\n...")),jarFile = "paper.jar")
@@ -92,11 +103,12 @@ def download_server():
 	elif options == 3:
 
 		# Libreria
-		versionesPU = {1:"https://api.purpurmc.org/v2/purpur/1.18.1/1497/download",2:"https://api.purpurmc.org/v2/purpur/1.17.1/1428/download",3:"https://api.purpurmc.org/v2/purpur/1.16.5/1171/download"}
+		versionesPU = {1:"1.18.1",2:"1.17.1",3:"1.16.5"}
 		versiones_PR = int(input("[1]1.18.1\n[2]1.17.1\n[3]1.16.5\n..."))
 		versiones_FN = versionesPU[versiones_PR]
 
 		# Descarga
+		url = "https://api.purpurmc.org/v2/purpur/{}/latest/download".format(versiones_FN)
 		subprocess.call('wget -t 100 {} -O "purpur.jar"'.format(versiones_FN), shell=True)
 
 		# Inicio	
