@@ -3,6 +3,7 @@ import subprocess
 from mcstatus import MinecraftServer
 import re
 import os
+import json
 # funciones
 
 
@@ -40,12 +41,10 @@ def entry_server():
 		print("Servidor ya esta siendo observado")
 
 def eula_sh(ram,jarFile):
-	file = open("eula.txt","w")
-	file.write("eula=true")	
-	file.close()
-	file = open("iniciar.sh","w")
-	file.write("java -Xmx{}G -Xms{}G -jar {} ".format(ram,ram,jarFile))
-	file.close()
+	with open("eula.txt","w") as w:
+		w.write("eula=true")
+	with open("iniciar.sh","w") as w:
+		w.write("java -Xmx{}G -Xms{}G -jar {} ".format(ram,ram,jarFile))
 
 """def change_ram():
 	file = open("iniciar.sh","w")
@@ -214,7 +213,6 @@ def deleted_server():
 	subprocess.call("clear",shell=True)
 	options = input("Estas por borrar el servidor esto incluye todos los archivos y datos del mismo [SI/NO]\n...").upper()
 	if options == "SI":
-		import os
 		os.system("ls | grep -v *.py | xargs rm -fr")
 		print("Servidor borrado correctamente")
 	else:
